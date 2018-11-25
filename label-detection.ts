@@ -9,12 +9,7 @@ const client = new vision.ImageAnnotatorClient();
 // Performs label detection on the image file
 
 var config = {
-    apiKey: "AIzaSyDf7pIvqRGhPwEdEMa2gEaHvB5YwnuGMXc",
-    authDomain: "captit-3c24c.firebaseapp.com",
-    databaseURL: "https://captit-3c24c.firebaseio.com",
-    projectId: "captit-3c24c",
-    storageBucket: "captit-3c24c.appspot.com",
-    messagingSenderId: "387939430325"
+   -----------
   };
 admin.initializeApp(config);
 
