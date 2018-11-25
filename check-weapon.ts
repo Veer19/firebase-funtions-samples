@@ -17,24 +17,14 @@ export const checkIfWeapon = functions.storage.object().onFinalize(object=>{
     
     const filePath = object.name;
 
-    const fileName = filePath.split("/").pop();
-    const bucket = admin.storage().bucket();
-    const tempFilePath = '/tmp/'+ fileName;
-
     if(!object.contentType.startsWith("image/")){
         console.log("Not an image");
         return null;
-    } 
-    return bucket.file(filePath).download({
-        destination: tempFilePath
-    })
-    .then(()=>{
-        return client.labelDetection(tempFilePath)
-    })
+    }     
+    return client.labelDetection('gs://'+object.bucket+'/'+filePath)
     .then((results)=>{
         
         const labels = results[0].labelAnnotations;
-
         labels.forEach(label => {
             console.log("Labels "+label.description);
             if(label.description=="weapon"){
